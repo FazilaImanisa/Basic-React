@@ -42,7 +42,7 @@ export default function ScoreList(props){
                 </div>
 
                 <hr></hr>
-                <h5>KKM : {avg.toFixed()}</h5>
+                <h5>Average : {avg.toFixed()}</h5>
             </div>
 
         </div>
