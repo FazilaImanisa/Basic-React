@@ -31,6 +31,24 @@ export default function Score(props){
         setScores(arrScores)
     },[])
 
+    let hitung=(math,english,chemistry) => {
+        let hasil = (math + english + chemistry)/3;
+        return hasil
+    }
+        
+
+    let status = (rataRata) => {
+        if (rataRata>= 75){
+            return (
+                <span className="badge rounded-pill bg-success">Passed Yay!</span>
+            )
+        } else if(rataRata <= 74){
+            return (
+                <span className="badge rounded-pill bg-danger">Try Again!</span>
+            )
+        }
+    }
+
     return(
         <dvi className="container-fluid">
             {/*  map -> scanning data array */}
@@ -42,7 +60,8 @@ export default function Score(props){
                     math={item.math}
                     english={item.english}
                     chemistry={item.chemistry}
-                    average={item.average}>
+                    rata={hitung(item.math, item.english, item.chemistry)}
+                    status={status(hitung(item.math, item.english, item.chemistry))}>
                 </ScoreList>
             ))}
         </dvi>

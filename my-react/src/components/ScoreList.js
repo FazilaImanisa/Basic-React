@@ -1,10 +1,5 @@
 export default function ScoreList(props){
-    let avg=(props.math + props.english + props.chemistry)/3
-    if (avg >= 75){
-        <span className="badge rounded-pill bg-success">Passed Yay!</span>
-    } else{
-        <span className="badge rounded-pill bg-danger">Try Again!</span>
-    }
+
     return (
         <div className="row m-2 p-4" style={{ border: `1px solid lightgrey`, }}>
             {/* Nama dan ID*/}
@@ -12,7 +7,7 @@ export default function ScoreList(props){
                 <div className="row-cols-md-2">
                     <h4 align="center">{props.nama}</h4>
                     <h4 align="center">{props.id}</h4>
-                    <span className="badge rounded-pill bg-success">Passed Yay!</span>
+                    {props.status}
                     
                 </div>
             </div>
@@ -42,7 +37,7 @@ export default function ScoreList(props){
                 </div>
 
                 <hr></hr>
-                <h5>Average : {avg.toFixed()}</h5>
+                <h5>Average : {props.rata.toFixed()}</h5>
             </div>
 
         </div>
