@@ -8,7 +8,7 @@ import { useEffect, useState } from "react"
 import { Modal } from "bootstrap";
 
 
-export default function Student(props){
+export default function Student(props) {
     let [students, setStudents] = useState([])
     let [modalStudent, setModalStudent] = useState(null)
     let [id, setID] = useState(0)
@@ -19,9 +19,9 @@ export default function Student(props){
 
     useEffect(() => {
         // inisiasi data array students
-        let arrayStudents =[
-            {id: 1, name: `Zila`, birthdate: `22 Agustus 2004`},
-            {id: 2, name: `Dhea`, birthdate: `14 Oktober 2004`}
+        let arrayStudents = [
+            { id: 1, name: `Zila`, birthdate: `22 Agustus 2004` },
+            { id: 2, name: `Dhea`, birthdate: `14 Oktober 2004` }
         ]
         setStudents(arrayStudents)
 
@@ -58,12 +58,12 @@ export default function Student(props){
             temp.push(newData)
             // store to students again
             setStudents(temp)
-        }else if (action === `edit`) {
+        } else if (action === `edit`) {
             // store data students to temp
             let temp = [...students]
 
             // find index of selected data by ID
-            let index = temp.findIndex(item => item.id === id )
+            let index = temp.findIndex(item => item.id === id)
 
             // update data based on founded index
             temp[index].name = name
@@ -84,7 +84,24 @@ export default function Student(props){
         setEditID(false)
     }
 
-    return(
+    let deleteStudent = item => {
+        if (window.confirm(`Are you sure want to delete this data?`)) {
+            // store array students to temp
+            let temp = [...students]
+
+            // find index of selected data by ID
+            let index = temp.findIndex(sis => sis.id === item.id)
+
+            // delete data from array based on founded index
+            temp.splice(index, 1)
+
+            // restore ke array students 
+            setStudents(temp)
+        }
+
+    }
+
+    return (
         <div>
             <div className="card col-10">
                 <div className="card-header bg-info">
@@ -112,13 +129,13 @@ export default function Student(props){
                                 <small>Action</small> <br />
                                 {/* edit button */}
                                 <button className="btn btn-primary mx-1"
-                                onClick={() => editStudent(item)}>
+                                    onClick={() => editStudent(item)}>
                                     Edit
                                 </button>
 
                                 {/* delete button */}
                                 <button className="btn btn-danger mx-1"
-                                onClick={() => deleteStudent(item)}>
+                                    onClick={() => deleteStudent(item)}>
                                     Delete
                                 </button>
                             </div>
@@ -127,9 +144,30 @@ export default function Student(props){
 
                     {/* button add data */}
                     <button className="btn btn-info text-white"
-                    onClick={() => addStudent()}>
+                        onClick={() => addStudent()}>
                         Add
                     </button>
+
+                    {/* create dropdown using name */}
+                    <select>
+                        {students.map(siswa => (
+                            <option value={siswa.id}>
+                                {siswa.name}
+                            </option>
+                        ))}
+                    </select>
+
+                    {/* create radio button using name */}
+                    {students.map(siswa => (
+                        <div>
+                            <input type={`radio`} name={`name`}
+                            value={siswa.name} />
+
+                            <label>
+                                {siswa.name} ({siswa.birthdate})
+                            </label>
+                        </div>
+                    ))}
 
                     {/* modal component */}
                     <div className="modal" id="modal_student">
@@ -140,13 +178,13 @@ export default function Student(props){
                                 </div>
                                 <div className="modal-body">
                                     {/* input for ID, Nama, Birthdate*/}
-                                    ID 
+                                    ID
                                     <input type={`number`}
-                                        className="form-control mb-2" 
+                                        className="form-control mb-2"
                                         value={id}
                                         onChange={ev => setID(ev.target.value)}
                                         readOnly={!editID} />
-                                        {/* saat add student, editID = true 
+                                    {/* saat add student, editID = true 
                                             oleh karena itu readOnly harus bernilai false
 
                                             saat edit student editID = false
@@ -155,18 +193,18 @@ export default function Student(props){
 
                                     Name
                                     <input type={`text`}
-                                        className="form-control mb-2" 
+                                        className="form-control mb-2"
                                         value={name}
-                                        onChange={ev => setName(ev.target.value)}/>
+                                        onChange={ev => setName(ev.target.value)} />
 
                                     Birthdate
                                     <input type={`text`}
-                                        className="form-control mb-2" 
+                                        className="form-control mb-2"
                                         value={birthdate}
-                                        onChange={ev => setBirthdate(ev.target.value)}/>
+                                        onChange={ev => setBirthdate(ev.target.value)} />
 
                                     <button className="btn btn-success"
-                                    onClick={() => saveStudent()}>
+                                        onClick={() => saveStudent()}>
                                         Save
                                     </button>
                                 </div>
