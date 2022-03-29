@@ -40,11 +40,11 @@ export default function Score(props){
     let status = (rataRata) => {
         if (rataRata>= 75){
             return (
-                <span className="badge rounded-pill bg-success">Passed Yay!</span>
+                <span className="badge rounded-pill bg-success">Passed</span>
             )
         } else if(rataRata <= 74){
             return (
-                <span className="badge rounded-pill bg-danger">Try Again!</span>
+                <span className="badge rounded-pill bg-danger">Try Again</span>
             )
         }
     }

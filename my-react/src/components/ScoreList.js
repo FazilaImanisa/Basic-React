@@ -5,8 +5,8 @@ export default function ScoreList(props){
             {/* Nama dan ID*/}
             <div className="col-lg-3" >
                 <div className="row-cols-md-2">
-                    <h4 align="center">{props.nama}</h4>
                     <h4 align="center">{props.id}</h4>
+                    <h4 align="center">{props.nama}</h4>
                     {props.status}
                     
                 </div>

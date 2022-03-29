@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import Student from './pages/Student';
 import Book from './pages/Book';
 import Score from './pages/Score';
+import Tofu from './pages/Tofu';
 
 // load library bootstrap for styling
 import "bootstrap/dist/css/bootstrap.min.css"
@@ -13,7 +14,7 @@ import "bootstrap/dist/js/bootstrap.bundle"
 import '@fortawesome/fontawesome-free/js/all'
 
 ReactDOM.render(
-  <Score/>,
+  <App />,
   document.getElementById('root')
 );
 
